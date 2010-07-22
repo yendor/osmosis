@@ -117,4 +117,13 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals($expected, $result);
 	}
+	public function testParserApache()
+    {
+		$this->object->LoadFile('./text/apache.txt');
+		$this->object->Lexer();
+		$result = $this->object->Parser();
+		$expected = "<h1>The most basic apache virtual host</h1>\n<pre><VirtualHost *:80>\n    ServerName localhost\n    DocumentRoot /var/www\n</VirutalHost>\n\n</pre>\n<h2>Another apache directive</h2>\n<pre><Location /var/www>\n    Options Indexes\n    Order allow,deny\n    Allow from All\n</Location>\n</pre>\n";
+
+		$this->assertEquals($expected, $result);
+	}
 }

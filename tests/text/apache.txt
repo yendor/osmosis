@@ -1,0 +1,14 @@
+1. The most basic apache virtual host
+
+    <VirtualHost *:80>
+        ServerName localhost
+        DocumentRoot /var/www
+    </VirutalHost>
+    
+2. Another apache directive
+
+    <Location /var/www>
+        Options Indexes
+        Order allow,deny
+        Allow from All
+    </Location>
