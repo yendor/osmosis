@@ -62,7 +62,6 @@ class Osmosis
 				} else {
 					$this->intermediate[] = trim($line);
 				}
-				continue;
 			}
 
 			if (!$state) {
