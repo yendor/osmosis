@@ -113,7 +113,7 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 		$this->object->LoadFile('./text/mysql-permissions');
 		$this->object->Lexer();
 		$result = $this->object->Parser();
-		$expected = "<h1>MySQL Permissions Cheat Sheet</h1>\n<h2>Create a regular user</h2>\n<pre>GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER\nON database.* TO 'monty'@'localhost'\nIDENTIFIED BY 'some_pass';\n\n</pre>\n<h2>Drop a user</h2>\n<pre>DROP USER 'monty'@'localhost';\n</pre>\n";
+		$expected = "<h1>MySQL Permissions Cheat Sheet</h1>\n<h2>Create a regular user</h2>\n<pre>GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER\nON database.* TO &#039;monty&#039;@&#039;localhost&#039;\nIDENTIFIED BY &#039;some_pass&#039;;\n\n</pre>\n<h2>Drop a user</h2>\n<pre>DROP USER &#039;monty&#039;@&#039;localhost&#039;;\n</pre>\n";
 
 		$this->assertEquals($expected, $result);
 	}
@@ -122,7 +122,7 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 		$this->object->LoadFile('./text/apache.txt');
 		$this->object->Lexer();
 		$result = $this->object->Parser();
-		$expected = "<h1>The most basic apache virtual host</h1>\n<pre><VirtualHost *:80>\n    ServerName localhost\n    DocumentRoot /var/www\n</VirutalHost>\n\n</pre>\n<h2>Another apache directive</h2>\n<pre><Location /var/www>\n    Options Indexes\n    Order allow,deny\n    Allow from All\n</Location>\n</pre>\n";
+		$expected = "<h1>The most basic apache virtual host</h1>\n<pre>&lt;VirtualHost *:80&gt;\n    ServerName localhost\n    DocumentRoot /var/www\n&lt;/VirutalHost&gt;\n\n</pre>\n<h2>Another apache directive</h2>\n<pre>&lt;Location /var/www&gt;\n    Options Indexes\n    Order allow,deny\n    Allow from All\n&lt;/Location&gt;\n</pre>\n";
 
 		$this->assertEquals($expected, $result);
 	}

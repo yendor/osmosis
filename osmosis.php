@@ -17,6 +17,13 @@ class Osmosis
 
 	protected $intermediate = array();
 
+	public $charset = 'UTF-8';
+
+	public function html($str)
+	{
+		return htmlspecialchars($str, ENT_QUOTES, $this->charset);
+	}
+
 	public function LoadFile($filename)
 	{
 		if (!file_exists($filename)) {
@@ -130,7 +137,7 @@ class Osmosis
 					break;
 				}
 				default: {
-					$output .= $token;
+					$output .= $this->html($token);
 					if ($inBlock) {
 						$output .= "\n";
 					}
