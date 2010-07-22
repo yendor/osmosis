@@ -107,4 +107,14 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 		$expected = "<h1>Heading</h1>\n<p>some random text\nmore text same paragraph\n</p>\n<pre>code\nmore code\nmore code\n\neven more code\n</pre>\n";
 		$this->assertEquals($expected, $result);
 	}
+
+	public function testParserMySqlNotes()
+    {
+		$this->object->LoadFile('./text/mysql-permissions');
+		$this->object->Lexer();
+		$result = $this->object->Parser();
+		$expected = "<h1>MySQL Permissions Cheat Sheet</h1>\n<h2>Create a regular user</h2>\n<pre>GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER\nON database.* TO 'monty'@'localhost'\nIDENTIFIED BY 'some_pass';\n\n</pre>\n<h2>Drop a user</h2>\n<pre>DROP USER 'monty'@'localhost';\n</pre>\n";
+
+		$this->assertEquals($expected, $result);
+	}
 }
