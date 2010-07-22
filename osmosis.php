@@ -45,7 +45,6 @@ class Osmosis
 				} else {
 					$this->intermediate[] = trim($line);
 				}
-				continue;
 			}
 
 			# A blank line marks the end of a paragraph
