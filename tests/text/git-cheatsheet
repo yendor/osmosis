@@ -1,0 +1,24 @@
+1. Git Cheatsheet For Some Not So Common Activities
+
+
+2. Post Receive Hook to Update The Checked Out Copy
+
+    #!/bin/sh
+	cd ..
+	env -i git reset --hard
+
+3. Add a remote
+
+**Note:** There is no : between the host and the path
+
+    git remote add origin ssh://user@host/path/to/repo/.git
+
+4. Undo the last commit
+
+If you want the changes to stay in the working directory but just want to undo the actual commit.
+
+    git reset --soft HEAD^
+    
+If you want to get rid of the last change completely then to.
+
+    git reset --hard HEAD^

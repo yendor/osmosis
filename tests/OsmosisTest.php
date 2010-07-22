@@ -126,4 +126,13 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals($expected, $result);
 	}
+	public function testParserGit()
+    {
+		$this->object->LoadFile('./text/git-cheatsheet');
+		$this->object->Lexer();
+		$result = $this->object->Parser();
+		$expected = "<h1>Git Cheatsheet For Some Not So Common Activities</h1>\n<h2>Post Receive Hook to Update The Checked Out Copy</h2>\n<pre>#!/bin/sh\ncd ..\nenv -i git reset --hard\n\n</pre>\n<h2>Add a remote</h2>\n<p>**Note:** There is no : between the host and the path\n</p>\n<pre>git remote add origin ssh://user@host/path/to/repo/.git\n\n</pre>\n<h2>Undo the last commit</h2>\n<p>If you want the changes to stay in the working directory but just want to undo the actual commit.\n</p>\n<pre>git reset --soft HEAD^\n\n</pre>\n<p>If you want to get rid of the last change completely then to.\n</p>\n<pre>git reset --hard HEAD^\n</pre>\n";
+
+		$this->assertEquals($expected, $result);
+	}
 }
