@@ -4,7 +4,7 @@ class Osmosis
 {
 	protected $filecontents = array();
 
-	const CODE_START_PATTERN = '#^\s{4}#';
+	const CODE_START_PATTERN = '#^(?:\s{4}|\t)#';
 	const HEADING_START_PATTERN = '#^[\d\.]+\s+#';
 	const PARA_START_PATTERN = '#^\S#';
 	const BLANK_LINE_PATTERN = '#^\s+$#';
