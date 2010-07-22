@@ -56,7 +56,7 @@ class Osmosis
 
 			# A blank line marks the end of a paragraph
 			if ($state == 'para') {
-				if (preg_match(self::BLANK_LINE_PATTERN, $line)) {
+				if (preg_match(self::BLANK_LINE_PATTERN, $line) || preg_match(self::CODE_START_PATTERN, $line)) {
 					$this->intermediate[] = self::PARA_END_TOKEN;
 					$state = '';
 				} else {
