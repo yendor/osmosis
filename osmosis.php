@@ -4,7 +4,7 @@ class Osmosis
 {
 	protected $filecontents = array();
 
-	const CODE_START_PATTERN = '#^\s{4,}#';
+	const CODE_START_PATTERN = '#^\s{4}#';
 	const HEADING_START_PATTERN = '#^[\d\.]+\s+#';
 	const PARA_START_PATTERN = '#^\S#';
 	const BLANK_LINE_PATTERN = '#^\s+$#';
@@ -43,7 +43,7 @@ class Osmosis
 					$state = '';
 					$this->intermediate[] = self::CODE_END_TOKEN;
 				} else {
-					$this->intermediate[] = trim($line);
+					$this->intermediate[] = preg_replace(self::CODE_START_PATTERN, '', rtrim($line));
 				}
 			}
 
