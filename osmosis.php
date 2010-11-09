@@ -7,13 +7,15 @@ class Osmosis
 	const CODE_START_PATTERN = '#^(?:\s{4}|\t)#';
 	const HEADING_START_PATTERN = '#^[\d\.]+\s+#';
 	const PARA_START_PATTERN = '#^\S#';
-	const BLANK_LINE_PATTERN = '#^\s+$#';
+	const BLANK_LINE_PATTERN = '#^\s*$#';
 
 	const HEADING_TOKEN = 1;
 	const CODE_START_TOKEN = 2;
 	const CODE_END_TOKEN = 3;
 	const PARA_START_TOKEN = 4;
 	const PARA_END_TOKEN = 5;
+	const BOLD_START_TOKEN = 6;
+	const BOLD_END_TOKEN = 7;
 
 	protected $intermediate = array();
 
@@ -59,6 +61,7 @@ class Osmosis
 				if (preg_match(self::BLANK_LINE_PATTERN, $line) || preg_match(self::CODE_START_PATTERN, $line)) {
 					$this->intermediate[] = self::PARA_END_TOKEN;
 					$state = '';
+					$this->intermediate[] = trim($line);
 				} else {
 					$this->intermediate[] = trim($line);
 				}
@@ -68,7 +71,7 @@ class Osmosis
 				if (preg_match(self::CODE_START_PATTERN, $line)) {
 					$state = 'code';
 					$this->intermediate[] = self::CODE_START_TOKEN;
-					$this->intermediate[] = trim($line);
+					$this->intermediate[] = preg_replace(self::CODE_START_PATTERN, '', rtrim($line));
 				} elseif (preg_match(self::HEADING_START_PATTERN, $line)) {
 					$this->intermediate[] = self::HEADING_TOKEN;
 					$this->intermediate[] = preg_replace(self::HEADING_START_PATTERN, '', trim($line));
