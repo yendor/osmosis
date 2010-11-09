@@ -95,7 +95,7 @@ class OsmosisTest extends PHPUnit_Framework_TestCase
 		$this->object->LoadFile('./text/complete.txt');
 		$this->object->Lexer();
 		$result = $this->object->GetIntermediateCode();
-		$expected = array(Osmosis::HEADING_TOKEN, "Heading", Osmosis::PARA_START_TOKEN, "some random text", 'more text same paragraph', Osmosis::PARA_END_TOKEN, Osmosis::CODE_START_TOKEN, "code","more code","more code", "", "even more code", Osmosis::CODE_END_TOKEN);
+		$expected = array(Osmosis::HEADING_TOKEN, "Heading", Osmosis::PARA_START_TOKEN, "some random text", 'more text same paragraph', Osmosis::PARA_END_TOKEN, '', Osmosis::CODE_START_TOKEN, "code","more code","more code", "", "even more code", Osmosis::CODE_END_TOKEN);
 		$this->assertEquals($expected, $result);
     }
 
